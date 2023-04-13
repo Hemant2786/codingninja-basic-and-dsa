@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+
+
+public class Solution {
+
+/*	Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	*/
+	static ArrayList<Integer> list=new ArrayList<>();
+
+	public static int  height(BinaryTreeNode<Integer> root){
+		if(root==null)
+		{
+			return -1;
+		} 
+         
+		 int left=height(root.left);
+		 int right=height(root.right);
+
+		 return 1+Math.max(left,right);
+	}
+
+	public static ArrayList<Integer> longestRootToLeafPath(BinaryTreeNode<Integer> root){
+		// Write your code here
+		int k=height(root);
+		findnode(root,k);
+		return list;
+	}
+
+	public static boolean findnode(BinaryTreeNode<Integer> root,int k){
+		if(root==null){
+			return false;
+		}
+
+		if(k==0){
+			list.add(root.data);
+			return true;
+		}
+
+		boolean left=findnode(root.left,k-1);
+		if(left){
+			list.add(root.data);
+			return true;
+		}
+	   boolean right=	findnode(root.right,k-1);
+	   if(right) {
+		   list.add(root.data);
+		   return true;
+	   }
+	   return false;
+	}
+
+	
+	
+}
