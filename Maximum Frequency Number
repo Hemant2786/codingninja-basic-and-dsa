@@ -1,0 +1,35 @@
+import java.util.HashMap;
+
+public class Solution {
+
+    public static int maxFrequencyNumber(int[] arr){ 
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+		
+		HashMap<Integer,Integer> list=new HashMap<>();
+		for(int i=0;i<arr.length;i++)
+		{
+			if(list.containsKey(arr[i])){
+				list.put(arr[i],list.get(arr[i])+1);
+			}else
+			list.put(arr[i],1);
+		}
+
+    int maxvalue=-1;
+		int maxkey=-1;
+		for(int i=0;i<list.size();i++ ){
+
+     if(maxvalue< list.get(arr[i])){
+				maxkey=arr[i];
+				maxvalue=list.get(arr[i]);
+			}
+		}
+
+		  return maxkey;
+    }
+}
+
