@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Solution {
+	public static int PairSum(int[] input, int size) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */
+		HashMap<Integer,Integer> map=new HashMap<>();
+
+		for(int i=0;i<size;i++){
+			if(map.containsKey(input[i])){
+				map.put(input[i], map.get(input[i])+1);
+			}else
+			map.put(input[i],1);
+		}
+		
+         int count=0;
+		Set<Integer> keys=map.keySet();
+
+		for(Integer i : keys){
+		     if(map.containsKey(-i) && i!=0){
+				 count=count+(map.get(i)*map.get(-i));
+				 map.put(i, 0);
+				 map.put(-i,0);
+			 }
+		}
+
+		if(map.containsKey(0)){
+			int v=map.get(0);
+			//System.out.print(v);
+			count=count+((v*(v-1))/2);
+		}
+          
+		  return count;
+	}
+} 
